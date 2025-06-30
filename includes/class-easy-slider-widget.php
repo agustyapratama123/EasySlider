@@ -214,7 +214,11 @@ class Easy_Slider_Widget extends Widget_Base {
             return;
         }
 
-        echo '<div class="easy-slider-wrapper">';
+        // Wrapper utama Swiper
+        echo '<div class="easy-slider swiper">';
+
+        // Wrapper slide container
+        echo '<div class="swiper-wrapper">';
 
         foreach ( $slides as $slide ) {
             $image_url = isset( $slide['slide_image']['url'] ) ? $slide['slide_image']['url'] : '';
@@ -231,22 +235,30 @@ class Easy_Slider_Widget extends Widget_Base {
             $subtitle_tag = !empty($slide['slide_subtitle_tag']) ? $slide['slide_subtitle_tag'] : 'h4';
             $subtitle_size = isset($slide['slide_subtitle_size']['size']) ? $slide['slide_subtitle_size']['size'] . 'px' : '18px';
 
-            echo '<div class="easy-slider-slide" style="background-image: url(' . esc_url( $image_url ) . ');">';
-            echo '  <div class="easy-slider-content">';
+            echo '<div class="swiper-slide">';
+            echo '  <div class="easy-slider-slide" style="background-image: url(' . esc_url( $image_url ) . ');">';
+            echo '    <div class="easy-slider-content">';
 
-            
             echo '<' . esc_html( $title_tag ) . ' class="easy-slider-title" style="font-size:' . esc_attr( $title_size ) . ';">' . esc_html( $title ) . '</' . esc_html( $title_tag ) . '>';
             echo '<' . esc_html( $subtitle_tag ) . ' class="easy-slider-subtitle" style="font-size:' . esc_attr( $subtitle_size ) . '; color: #fff;">' . esc_html( $subtitle ) . '</' . esc_html( $subtitle_tag ) . '>';
             echo '<p class="easy-slider-description" style="color: #fff;">' . esc_html( $description ) . '</p>';
 
             if ( ! empty( $button_text ) ) {
-                echo '    <a href="' . esc_url( $button_url ) . '" class="easy-slider-button">' . esc_html( $button_text ) . '</a>';
+                echo '      <a href="' . esc_url( $button_url ) . '" class="easy-slider-button">' . esc_html( $button_text ) . '</a>';
             }
 
-            echo '  </div>';
-            echo '</div>';
+            echo '    </div>'; // .easy-slider-content
+            echo '  </div>';   // .easy-slider-slide
+            echo '</div>';     // .swiper-slide
         }
 
-        echo '</div>';
+        echo '</div>'; // .swiper-wrapper
+
+        // Navigasi swiper
+        echo '<div class="swiper-button-prev"></div>';
+        echo '<div class="swiper-button-next"></div>';
+
+        echo '</div>'; // .easy-slider.swiper
     }
+
 }

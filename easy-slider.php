@@ -35,3 +35,11 @@ function easy_slider_admin_page() {
     </div>
     <?php
 }
+
+function easy_slider_enqueue_scripts() {
+    wp_enqueue_style( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css' );
+    wp_enqueue_script( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', [], null, true );
+    
+    wp_enqueue_script( 'easy-slider-init', plugins_url( 'assets/js/easy-slider-init.js', __FILE__ ), ['swiper'], null, true );
+}
+add_action( 'wp_enqueue_scripts', 'easy_slider_enqueue_scripts' );
