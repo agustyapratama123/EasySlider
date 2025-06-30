@@ -43,3 +43,15 @@ function easy_slider_enqueue_scripts() {
     wp_enqueue_script( 'easy-slider-init', plugins_url( 'assets/js/easy-slider-init.js', __FILE__ ), ['swiper'], null, true );
 }
 add_action( 'wp_enqueue_scripts', 'easy_slider_enqueue_scripts' );
+
+add_action( 'elementor/frontend/after_enqueue_styles', 'easy_slider_enqueue_styles' );
+
+function easy_slider_enqueue_styles() {
+    wp_enqueue_style(
+        'easy-slider-style',
+        plugin_dir_url( __FILE__ ) . 'assets/css/easy-slider.css',
+        [],
+        '1.0'
+    );
+}
+
