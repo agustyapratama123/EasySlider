@@ -202,6 +202,48 @@ class Easy_Slider_Widget extends Widget_Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'slider_height',
+            [
+                'label' => __( 'Tinggi Slider', 'easy-slider' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 100,
+                        'max' => 1200,
+                    ],
+                ],
+                'default' => [
+                    'size' => 500,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .easy-slider' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'content_padding',
+            [
+                'label' => __( 'Padding Kontainer Konten', 'easy-slider' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%', 'em' ],
+                'default' => [
+                    'top' => 40,
+                    'right' => 40,
+                    'bottom' => 40,
+                    'left' => 40,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .easy-slider-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
+
         $this->end_controls_section(); // END Style Section
     }
 
@@ -236,7 +278,9 @@ class Easy_Slider_Widget extends Widget_Base {
             $subtitle_size = isset($slide['slide_subtitle_size']['size']) ? $slide['slide_subtitle_size']['size'] . 'px' : '18px';
 
             echo '<div class="swiper-slide">';
-            echo '  <div class="easy-slider-slide" style="background-image: url(' . esc_url( $image_url ) . ');">';
+            // echo '  <div class="easy-slider-slide" style="background-image: url(' . esc_url( $image_url ) . ');">';
+            echo '  <div class="easy-slider-slide" style="background-image: url(' . esc_url( $image_url ) . '); background-size: cover; background-position: center; height: 100%;">';
+
             echo '    <div class="easy-slider-content">';
 
             echo '<' . esc_html( $title_tag ) . ' class="easy-slider-title" style="font-size:' . esc_attr( $title_size ) . ';">' . esc_html( $title ) . '</' . esc_html( $title_tag ) . '>';
