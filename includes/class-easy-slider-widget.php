@@ -43,6 +43,19 @@ class Easy_Slider_Widget extends Widget_Base {
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
                 ],
+                'separator' => 'before',
+            ]
+        );
+
+        // Pengaturan Judul
+        $repeater->add_control(
+            'heading_title_group',
+            [
+                // 'label' => __( 'Pengaturan Judul', 'easy-slider' ),
+                'label' => __( '🟦 Pengaturan Judul', 'easy-slider' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+                
             ]
         );
 
@@ -53,6 +66,7 @@ class Easy_Slider_Widget extends Widget_Base {
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Judul Slide', 'easy-slider' ),
                 'label_block' => true,
+                'separator' => 'before',
             ]
         );
 
@@ -93,12 +107,74 @@ class Easy_Slider_Widget extends Widget_Base {
         );
 
         $repeater->add_control(
+            'slide_title_color',
+            [
+                'label' => __( 'Warna Teks Judul', 'easy-slider' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-title' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $repeater->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'slide_title_typography',
+                'label' => __( 'Tipografi Judul', 'easy-slider' ),
+                'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-title',
+            ]
+        );
+
+        $repeater->add_group_control(
+            \Elementor\Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'slide_title_text_shadow',
+                'label' => __( 'Bayangan Teks Judul', 'easy-slider' ),
+                'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-title',
+            ]
+        );
+
+        $repeater->add_responsive_control(
+            'slide_title_margin_bottom',
+            [
+                'label' => __( 'Margin Bawah Judul', 'easy-slider' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'size' => 10,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
+
+        
+        $repeater->add_control(
+            'heading_subtitle_group',
+            [
+                'label' => __( '🟦 Pengaturan Subjudul', 'easy-slider' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $repeater->add_control(
             'slide_subtitle',
             [
                 'label' => __( 'Subjudul', 'easy-slider' ),
                 'type' => Controls_Manager::TEXT,
                 'default' => __( 'Subjudul Slide', 'easy-slider' ),
                 'label_block' => true,
+                'separator' => 'before',
             ]
         );
 
@@ -139,6 +215,64 @@ class Easy_Slider_Widget extends Widget_Base {
         );
 
         $repeater->add_control(
+            'slide_subtitle_color',
+            [
+                'label' => __( 'Warna Teks Subjudul', 'easy-slider' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-subtitle' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $repeater->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'slide_subtitle_typography',
+                'label' => __( 'Tipografi Subjudul', 'easy-slider' ),
+                'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-subtitle',
+            ]
+        );
+
+        $repeater->add_group_control(
+            \Elementor\Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'slide_subtitle_shadow',
+                'label' => __( 'Bayangan Teks Subjudul', 'easy-slider' ),
+                'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-subtitle',
+            ]
+        );
+
+        $repeater->add_responsive_control(
+            'slide_subtitle_margin_bottom',
+            [
+                'label' => __( 'Margin Bawah Subjudul', 'easy-slider' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', 'em', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-subtitle' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
+
+        $repeater->add_control(
+            'heading_description_group',
+            [
+                'label' => __( '🟦 Pengaturan Deskripsi', 'easy-slider' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $repeater->add_control(
             'slide_description',
             [
                 'label' => __( 'Deskripsi', 'easy-slider' ),
@@ -149,6 +283,36 @@ class Easy_Slider_Widget extends Widget_Base {
             ]
         );
 
+        $repeater->add_control(
+            'slide_description_color',
+            [
+                'label' => __( 'Warna Deskripsi', 'easy-slider' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-description' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $repeater->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'slide_description_typography',
+                'label' => __( 'Tipografi Deskripsi', 'easy-slider' ),
+                'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-description',
+            ]
+        );
+
+
+
+        $repeater->add_control(
+            'heading_button_group',
+            [
+                'label' => __( '🟦 Pengaturan Button', 'easy-slider' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
         $repeater->add_control(
             'slide_button_text',
             [
@@ -273,19 +437,19 @@ class Easy_Slider_Widget extends Widget_Base {
             // tag & size
             $title_tag = !empty($slide['slide_title_tag']) ? $slide['slide_title_tag'] : 'h2';
             $title_size = isset($slide['slide_title_size']['size']) ? $slide['slide_title_size']['size'] . 'px' : '32px';
-
             $subtitle_tag = !empty($slide['slide_subtitle_tag']) ? $slide['slide_subtitle_tag'] : 'h4';
             $subtitle_size = isset($slide['slide_subtitle_size']['size']) ? $slide['slide_subtitle_size']['size'] . 'px' : '18px';
 
-            echo '<div class="swiper-slide">';
-            // echo '  <div class="easy-slider-slide" style="background-image: url(' . esc_url( $image_url ) . ');">';
-            echo '  <div class="easy-slider-slide" style="background-image: url(' . esc_url( $image_url ) . '); background-size: cover; background-position: center; height: 100%;">';
+            // Repeater ID untuk custom styling
+            $repeater_id = isset($slide['_id']) ? 'elementor-repeater-item-' . $slide['_id'] : '';
 
+            echo '<div class="swiper-slide ' . esc_attr($repeater_id) . '">';
+            echo '  <div class="easy-slider-slide" style="background-image: url(' . esc_url( $image_url ) . '); background-size: cover; background-position: center; height: 100%;">';
             echo '    <div class="easy-slider-content">';
 
             echo '<' . esc_html( $title_tag ) . ' class="easy-slider-title" style="font-size:' . esc_attr( $title_size ) . ';">' . esc_html( $title ) . '</' . esc_html( $title_tag ) . '>';
-            echo '<' . esc_html( $subtitle_tag ) . ' class="easy-slider-subtitle" style="font-size:' . esc_attr( $subtitle_size ) . '; color: #fff;">' . esc_html( $subtitle ) . '</' . esc_html( $subtitle_tag ) . '>';
-            echo '<p class="easy-slider-description" style="color: #fff;">' . esc_html( $description ) . '</p>';
+            echo '<' . esc_html( $subtitle_tag ) . ' class="easy-slider-subtitle" style="font-size:' . esc_attr( $subtitle_size ) . ';">' . esc_html( $subtitle ) . '</' . esc_html( $subtitle_tag ) . '>';
+            echo '<p class="easy-slider-description">' . esc_html( $description ) . '</p>';
 
             if ( ! empty( $button_text ) ) {
                 echo '      <a href="' . esc_url( $button_url ) . '" class="easy-slider-button">' . esc_html( $button_text ) . '</a>';
@@ -304,5 +468,6 @@ class Easy_Slider_Widget extends Widget_Base {
 
         echo '</div>'; // .easy-slider.swiper
     }
+
 
 }
