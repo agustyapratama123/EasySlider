@@ -332,6 +332,152 @@ class Easy_Slider_Widget extends Widget_Base {
             ]
         );
 
+        $repeater->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'button_typography',
+                'label' => __( 'Tipografi Tombol', 'easy-slider' ),
+                'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-button',
+            ]
+        );
+
+        $repeater->add_control(
+            'button_text_color',
+            [
+                'label' => __( 'Warna Teks Tombol', 'easy-slider' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-button' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $repeater->add_control(
+            'button_background_color',
+            [
+                'label' => __( 'Warna Latar Tombol', 'easy-slider' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-button' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $repeater->add_group_control(
+            \Elementor\Group_Control_Text_Shadow::get_type(),
+            [
+                'name' => 'button_text_shadow',
+                'label' => __( 'Text Shadow Tombol', 'easy-slider' ),
+                'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-button',
+            ]
+        );
+
+        $repeater->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'button_box_shadow',
+                'label' => __( 'Box Shadow Tombol', 'easy-slider' ),
+                'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-button',
+            ]
+        );
+
+        $repeater->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'button_border',
+                'label' => __( 'Border Tombol', 'easy-slider' ),
+                'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-button',
+            ]
+        );
+
+        $repeater->add_responsive_control(
+            'button_border_radius',
+            [
+                'label' => __( 'Radius Tombol', 'easy-slider' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $repeater->add_responsive_control(
+            'button_padding',
+            [
+                'label' => __( 'Padding Tombol', 'easy-slider' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%', 'em' ],
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $repeater->add_responsive_control(
+            'button_margin',
+            [
+                'label' => __( 'Margin Tombol', 'easy-slider' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%', 'em' ],
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $repeater->add_responsive_control(
+            'button_width',
+            [
+                'label' => __( 'Lebar Tombol', 'easy-slider' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%', 'em', 'vw' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-button' => 'width: {{SIZE}}{{UNIT}}; display: inline-block; text-decoration: none;',
+                ],
+
+            ]
+        );
+
+        $repeater->add_control(
+            'button_text_align',
+            [
+                'label' => __( 'Perataan Teks Tombol', 'easy-slider' ),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __( 'Kiri', 'easy-slider' ),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Tengah', 'easy-slider' ),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => __( 'Kanan', 'easy-slider' ),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'toggle' => false,
+                'selectors' => [
+                    '{{WRAPPER}} {{CURRENT_ITEM}} .easy-slider-button' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
+
+
+
         $this->add_control(
             'slides',
             [
@@ -353,19 +499,7 @@ class Easy_Slider_Widget extends Widget_Base {
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
-
-        $this->add_control(
-            'title_color',
-            [
-                'label' => __( 'Warna Judul', 'easy-slider' ),
-                'type' => Controls_Manager::COLOR,
-                'default' => '#ffffff',
-                'selectors' => [
-                    '{{WRAPPER}} .easy-slider-title' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
+        
         $this->add_responsive_control(
             'slider_height',
             [
@@ -406,6 +540,33 @@ class Easy_Slider_Widget extends Widget_Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'content_alignment',
+            [
+                'label' => __( 'Perataan Konten', 'easy-slider' ),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'flex-start' => [
+                        'title' => __( 'Kiri', 'easy-slider' ),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => __( 'Tengah', 'easy-slider' ),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'flex-end' => [
+                        'title' => __( 'Kanan', 'easy-slider' ),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'toggle' => false,
+                'selectors' => [
+                    '{{WRAPPER}} .easy-slider-content' => 'display: flex; flex-direction: column; align-items: {{VALUE}};',
+                    '{{WRAPPER}} .easy-slider-content *' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
 
 
         $this->end_controls_section(); // END Style Section
